@@ -62,6 +62,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                     smtpClient.Send(mimeMessage);
                     smtpClient.Disconnect(true);
 
+                    TempData["Mail"] = appUserRegisterDTO.Email;
 
 
 
