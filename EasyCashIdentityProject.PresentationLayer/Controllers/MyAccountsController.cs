@@ -31,6 +31,28 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
 
             return View(appUserEditDTO);
         }
-        //[HttpPost]
+        [HttpPost]
+        public async Task<IActionResult> Index(AppUserEditDTO appUserEditDTO)
+        {
+          
+            if (appUserEditDTO.Password==appUserEditDTO.ConfirmPassword)
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                user.PhoneNumber = appUserEditDTO.PhoneNumber;
+                user.CustomerSurname = appUserEditDTO.Surname;
+                user.City = appUserEditDTO.City;
+                user.District = appUserEditDTO.District;
+                user.CustomerName = appUserEditDTO.Name;
+                user.ImageURL = "test";
+                user.Email = appUserEditDTO.EMail;
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user,appUserEditDTO.Password);
+                var result= await _userManager.UpdateAsync(user);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+            }
+            return View();
+        }
     }
 }
