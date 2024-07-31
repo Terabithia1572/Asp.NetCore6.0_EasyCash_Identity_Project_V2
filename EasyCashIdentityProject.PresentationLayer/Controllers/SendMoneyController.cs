@@ -39,7 +39,9 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
             var senderAccountNumberID = context.CustomerAccounts.Where(x => x.AppUserID == user.Id).Where
                 (y => y.CustomerAccountCurrency == "Türk Lirası").Select(y => y.CustomerAccountID)
                 .FirstOrDefault();
-
+            //var defaultGate=context.CustomerAccountProccesses.Where(x=>x.ProcessDate)
+            //    .Select(y=>y.ProcessDate)
+            //    .FirstOrDefault();
             var values = new CustomerAccountProccess();
             values.ProcessDate= Convert.ToDateTime(DateTime.Now.ToShortDateString());
             values.SenderID = senderAccountNumberID;
