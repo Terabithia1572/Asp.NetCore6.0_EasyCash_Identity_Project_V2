@@ -28,10 +28,11 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                 var jsonResponse = JObject.Parse(body);
 
                 // result kısmını al
-                var result = jsonResponse["result"].ToString();
+                decimal result = decimal.Parse(jsonResponse["result"].ToString());
+                string formattedResult = result.ToString("F2");
 
                 // ViewBag'e result değerini ekle
-                ViewBag.Exchange = result;
+                ViewBag.Exchange = formattedResult;
             }
             return View();
         }
