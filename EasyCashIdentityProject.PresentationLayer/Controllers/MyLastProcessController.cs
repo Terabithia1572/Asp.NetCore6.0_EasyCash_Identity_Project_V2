@@ -1,4 +1,5 @@
 ﻿using EasyCashIdentityProject.BusinessLayer.Abstract;
+using EasyCashIdentityProject.DataAccessLayer.Concrete;
 using EasyCashIdentityProject.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,8 +19,11 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
 
         public async Task< IActionResult> Index()
         {
+            var context = new Context();
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var values = _customerAccountProcessService.TMyLastProcess(user.Id);
+            int id = context.CustomerAccounts.Where(x => x.AppUserID == user.Id && x.CustomerAccountCurrency=="Türk Lirası").Select
+                (y => y.CustomerAccountID).FirstOrDefault();
+            var values = _customerAccountProcessService.TMyLastProcess(id);
             return View(values);
         }
     }
