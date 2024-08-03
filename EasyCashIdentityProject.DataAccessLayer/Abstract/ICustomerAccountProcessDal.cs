@@ -9,5 +9,6 @@ namespace EasyCashIdentityProject.DataAccessLayer.Abstract
 {
     public interface ICustomerAccountProcessDal:IGenericDal<CustomerAccountProccess>
     {
+        List<CustomerAccountProccess> MyLastProcess(int id);
     }
 }
