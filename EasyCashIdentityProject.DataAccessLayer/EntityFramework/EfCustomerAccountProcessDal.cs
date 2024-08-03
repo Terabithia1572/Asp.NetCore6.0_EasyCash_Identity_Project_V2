@@ -3,6 +3,7 @@ using EasyCashIdentityProject.DataAccessLayer.Abstract;
 using EasyCashIdentityProject.DataAccessLayer.Concrete;
 using EasyCashIdentityProject.DataAccessLayer.Repositories;
 using EasyCashIdentityProject.EntityLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace EasyCashIdentityProject.DataAccessLayer.EntityFramework
         public List<CustomerAccountProccess> MyLastProcess(int id)
         {
             var context = new Context();
-            var values=context.CustomerAccountProccesses.Where(x=>x.ReceiverID==id||x.SenderID==id)
+            var values=context.CustomerAccountProccesses.Include(y=>y.SenderCustomer).Where(x=>x.ReceiverID==id||x.SenderID==id)
                 .ToList();
             return values;
         }
