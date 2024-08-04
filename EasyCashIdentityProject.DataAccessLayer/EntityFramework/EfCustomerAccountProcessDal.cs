@@ -17,7 +17,7 @@ namespace EasyCashIdentityProject.DataAccessLayer.EntityFramework
         public List<CustomerAccountProccess> MyLastProcess(int id)
         {
             var context = new Context();
-            var values=context.CustomerAccountProccesses.Include(y=>y.SenderCustomer).Where(x=>x.ReceiverID==id||x.SenderID==id)
+            var values=context.CustomerAccountProccesses.Include(y=>y.SenderCustomer).Include(w=>w.ReceiverCustomer).ThenInclude(z=>z.AppUser).Where(x=>x.ReceiverID==id||x.SenderID==id)
                 .ToList();
             return values;
         }
