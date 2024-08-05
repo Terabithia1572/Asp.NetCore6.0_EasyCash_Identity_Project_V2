@@ -17,6 +17,7 @@ namespace EasyCashIdentityProject.DataAccessLayer.Concrete
         }
         public DbSet<CustomerAccount> CustomerAccounts { get; set; }
         public DbSet<CustomerAccountProccess> CustomerAccountProccesses { get; set; }
+        public DbSet<ElectricBill> ElectricBills { get; set; }
         //Appuser için Dbset oluşturmamuza gerek yok
         protected override void OnModelCreating(ModelBuilder builder)
         {
