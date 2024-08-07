@@ -14,5 +14,6 @@ namespace EasyCashIdentityProject.EntityLayer.Concrete
         public string BillingPeriod { get; set; }
         public DateTime PaymentDueDate { get; set; }
         public bool PaidStatus { get; set; }
+        public decimal Amount { get; set; }
     }
 }
